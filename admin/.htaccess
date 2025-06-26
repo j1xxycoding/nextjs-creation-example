@@ -1,0 +1,28 @@
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect against script injection
+<FilesMatch "(?i)\.(php|php3?|phtml|html?)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+# Block access to sensitive files
+<FilesMatch "^(config\.php|README\.md|composer\.(json|lock))$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Redirect all non-existing URLs to login page
+ErrorDocument 404 /admin/login.php
+
+# Force HTTPS (uncomment in production)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
