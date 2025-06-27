@@ -235,6 +235,7 @@ $orders = $connection->query($query);
                     <th>Customer</th>
                     <th>Product</th>
                     <th>Size</th>
+                    <th>Color</th>
                     <th>Price</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -255,6 +256,7 @@ $orders = $connection->query($query);
                         </td>
                         <td><?php echo h($order['product_name']); ?></td>
                         <td><?php echo h($order['taille']); ?></td>
+                        <td><?php echo h($order['color']); ?></td>
                         <td>DZD <?php echo number_format($order['price_dzd'], 2); ?></td>
                         <td>
                             <span class="status status-<?php echo $order['status']; ?>">
@@ -284,7 +286,7 @@ $orders = $connection->query($query);
 
                 <?php if (!$hasOrders): ?>
                     <tr>
-                        <td colspan="7" style="text-align: center;">No orders found.</td>
+                        <td colspan="8" style="text-align: center;">No orders found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
